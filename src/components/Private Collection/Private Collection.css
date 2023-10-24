@@ -1,0 +1,24 @@
+.private-collection-container {
+  width: -webkit-fill-available;
+}
+
+.private-collection-image {
+  width: 300px;
+}
+
+.private-collection-title {
+  color: #fff;
+  font: "Kanit-Regular";
+  font-weight: 100;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+.private-collection-description {
+  color: #fff;
+  font: "Kanit-Regular";
+  font-weight: 50;
+  margin: 0px;
+  padding: 0px;
+}

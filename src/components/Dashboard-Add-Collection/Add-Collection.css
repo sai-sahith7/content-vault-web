@@ -1,0 +1,105 @@
+.dashboard-add-collection {
+  width: 400px;
+  height: 200px;
+  border-radius: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 10px 0px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Kanit-Regular";
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  position: relative;
+}
+
+.add-collection-input-container {
+  gap: 40px;
+}
+
+.add-collection-input {
+  border-radius: 10px;
+  border: 2px solid #fff;
+  background: none;
+  width: 280px;
+  flex-shrink: 0;
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.add-collection-button-container {
+  gap: 30px;
+}
+
+.add-collection-cancel-button {
+  width: 120px;
+  height: 35px;
+  border-radius: 30px;
+  border: 1px solid #c72a2a;
+  background: #c72a2a;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-collection-confirm-button {
+  width: 120px;
+  height: 35px;
+  border-radius: 30px;
+  border: 1px solid #1fb141;
+  background: #1fb141;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 540px) {
+  .dashboard-add-collection {
+    width: 300px;
+    height: 150px;
+    border-radius: 60px;
+    box-shadow: 5px 10px 0px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .add-collection-input-container {
+    gap: 40px;
+  }
+
+  .add-collection-input {
+    border-radius: 10px;
+    border: 2px solid #fff;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  .add-collection-button-container {
+    gap: 30px;
+  }
+
+  .add-collection-cancel-button {
+    width: 100px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #c72a2a;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+  }
+
+  .add-collection-confirm-button {
+    width: 100px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #1fb141;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+  }
+}

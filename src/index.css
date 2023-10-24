@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Kanit-Regular';
+  src: url('./assets/fonts/Kanit-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Kanit-Medium';
+  src: url('./assets/fonts/Kanit-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Kanit-Bold';
+  src: url('./assets/fonts/Kanit-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Kanit-ExtraBold';
+  src: url('./assets/fonts/Kanit-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Major-Mono-Display';
+  src: url('./assets/fonts/MajorMonoDisplay-Regular.ttf');
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-family: 'Kanit-Regular';
+  overflow: hidden;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+.flex-item {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  margin: 0px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

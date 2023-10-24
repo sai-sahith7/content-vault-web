@@ -1,0 +1,63 @@
+.navbar-container {
+  justify-content: space-between;
+  width: -webkit-fill-available;
+  padding-top: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.navbar-logo-text {
+  color: #fff;
+  font-family: "Major-Mono-Display";
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.navbar-profile-container {
+  gap: 30px;
+}
+
+.navbar-profile-username {
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.navbar-profile-username::selection {
+  background: #fff;
+  color: #393737;
+}
+
+.navbar-profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.navbar-logo-text::selection,
+.navbar-profile-username::selection {
+  background: #fff;
+  color: #393737;
+}
+
+@media screen and (max-width: 540px) {
+  .navbar-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .navbar-logo-text {
+    font-size: 30px;
+  }
+
+  .navbar-profile-username {
+    font-size: 20px;
+  }
+
+  .navbar-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+}

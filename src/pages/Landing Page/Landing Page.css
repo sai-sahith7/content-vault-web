@@ -1,0 +1,78 @@
+.landingPage {
+  height: 100vh;
+  width: 100vw;
+  background: #393737;
+  background-image: url("../../assets/images/Background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  gap: 20px;
+}
+
+.landingPage-header {
+  color: #fff;
+  font-family: "Major-Mono-Display";
+  font-size: 70px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.landingPage-header::selection,
+.landingPage-tagLine::selection {
+  background: #fff;
+  color: #393737;
+}
+
+.landingPage-tagLine {
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 27px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.signInButton {
+  aspect-ratio: 420/100;
+  width: 300px;
+  margin-top: 100px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .landingPage {
+    background-image: url("../../assets/images/mobile-background.png");
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .landingPage-header {
+    font-size: 50px;
+  }
+
+  .landingPage-tagLine {
+    font-size: 20px;
+  }
+
+  .signInButton {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .landingPage {
+    background-image: url("../../assets/images/mobile-background-2.png");
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .landingPage-header {
+    font-size: 40px;
+  }
+
+  .landingPage-tagLine {
+    font-size: 15px;
+  }
+
+  .signInButton {
+    width: 150px;
+  }
+}

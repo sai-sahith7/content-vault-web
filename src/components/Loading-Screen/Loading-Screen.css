@@ -1,0 +1,38 @@
+.loadingScreen-page {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  background: #393737;
+}
+
+.loadingScreen-container {
+  gap: 20px;
+}
+
+.loadingScreen-loading {
+  border-radius: 50px;
+}
+
+.loadingScreen-text {
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 30px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 505px) {
+  .loadingScreen-loading {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .loadingScreen-loading {
+    width: 200px;
+  }
+
+  .loadingScreen-text {
+    font-size: 20px;
+  }
+}

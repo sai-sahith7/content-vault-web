@@ -1,0 +1,30 @@
+body {
+  background: #393737;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboard-container {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  height: 100vh;
+}
+
+.dashboard-collection-container {
+  gap: 50px;
+  width: -webkit-fill-available;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 60px;
+  padding-top: 75px;
+}
+
+.dashboard-collection-container::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,52 @@
+.dashboard-searchbar-container {
+  width: -webkit-fill-available;
+  max-width: 920px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin-top: 75px;
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  gap: 25px;
+}
+
+.dashboard-searchbar-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.dashboard-searchbar-input {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 30px;
+  font-weight: 400;
+  background: none;
+  border: none;
+}
+
+.dashboard-searchbar-input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 540px) {
+  .dashboard-searchbar-container {
+    margin-top: 55px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    gap: 15px;
+  }
+
+  .dashboard-searchbar-input {
+    font-size: 20px;
+  }
+}

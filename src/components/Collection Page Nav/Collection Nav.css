@@ -1,0 +1,75 @@
+.collection-nav-container {
+  width: 380px;
+  height: 100vh;
+  border-right: 2px solid #fff;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.collection-nav-container::-webkit-scrollbar {
+  display: none;
+}
+
+.collection-nav-list {
+  align-self: flex-start;
+  align-items: flex-start;
+  width: -webkit-fill-available;
+  margin-top: 40px;
+  flex-wrap: nowrap;
+  margin-bottom: 100px;
+}
+
+.collection-nav-empty {
+  margin-top: 50px;
+  font: "Kanit-Regular";
+  font-size: 30px;
+  color: #ff6565;
+  text-align: center;
+  font-weight: 100;
+}
+
+.collection-item-container {
+  width: -webkit-fill-available;
+  justify-content: flex-start;
+  cursor: pointer;
+  gap: 10px;
+  padding: 15px;
+  padding-left: 30px;
+}
+
+.collection-item-container:hover {
+  background: #656565;
+}
+
+.collection-item-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.collection-item-name {
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 25px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 1230px) {
+  .collection-nav-container {
+    width: 300px;
+  }
+
+  .collection-item-name {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .collection-nav-container {
+    display: none;
+  }
+}

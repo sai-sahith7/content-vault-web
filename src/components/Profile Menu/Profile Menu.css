@@ -1,0 +1,45 @@
+.profile-menu-container {
+  position: absolute;
+  top: 85px;
+  right: 15px;
+  font-family: "Kanit-Regular";
+  border: 2px solid #000;
+  background: #dedbdb;
+  padding: 10px;
+  border-radius: 10px;
+  gap: 5px;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.profile-menu-item {
+  gap: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  width: -webkit-fill-available;
+  justify-content: flex-start;
+}
+
+.profile-menu-item:hover {
+  cursor: pointer;
+  background: #fff;
+}
+
+.profile-menu-image {
+  width: 30px;
+}
+
+@media screen and (max-width: 540px) {
+  .profile-menu-container {
+    top: 65px;
+    right: 5px;
+  }
+
+  .profile-menu-item {
+    padding: 2px;
+  }
+
+  .profile-menu-image {
+    width: 20px;
+  }
+}

@@ -1,0 +1,38 @@
+.notFound-page {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  background: #393737;
+}
+
+.notFound-container {
+  gap: 20px;
+}
+
+.notFound-loading {
+  border-radius: 50px;
+}
+
+.notFound-text {
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 30px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 505px) {
+  .notFound-loading {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .notFound-loading {
+    width: 200px;
+  }
+
+  .notFound-text {
+    font-size: 20px;
+  }
+}

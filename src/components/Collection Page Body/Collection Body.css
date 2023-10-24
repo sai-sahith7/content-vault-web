@@ -1,0 +1,169 @@
+.collection-body-container {
+  width: -webkit-fill-available;
+  height: 100vh;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.collection-body-title {
+  color: #fff;
+  font-family: "Major-Mono-Display";
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.collection-body-title::selection {
+  background: #fff;
+  color: #15161f;
+}
+
+.items-container {
+  width: -webkit-fill-available;
+  gap: 50px;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  justify-content: flex-start;
+  padding-bottom: 160px;
+  padding-top: 50px;
+}
+
+.item-title {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.item-description {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.items-container::-webkit-scrollbar {
+  display: none;
+}
+
+.items-empty-text {
+  color: #ff6565;
+  font-family: "Kanit-Regular";
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.add-item-image {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+.add-item-container {
+  width: -webkit-fill-available;
+  position: absolute;
+  bottom: 0;
+  background: #15161f;
+  flex-wrap: nowrap;
+  gap: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 40px;
+}
+
+.add-item-container-image {
+  width: 50px;
+}
+
+.add-item-container-input {
+  width: -webkit-fill-available;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  background: none;
+  color: #fff;
+  font-family: "Kanit-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 20px;
+}
+
+.add-item-container-input:focus {
+  outline: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1230px) {
+  .collection-body-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .items-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .collection-body-title {
+    padding-top: 30px;
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .collection-body-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .items-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .add-item-image {
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .add-item-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 20px;
+  }
+
+  .add-item-container-input {
+    font-size: 15px;
+  }
+  .add-item-container-image {
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .collection-body-title {
+    padding-top: 30px;
+    font-size: 20px;
+  }
+
+  .add-item-image {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .add-item-container-image {
+    width: 30px;
+  }
+  .add-item-container {
+    gap: 10px;
+  }
+}
