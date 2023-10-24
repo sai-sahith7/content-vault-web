@@ -17,6 +17,7 @@ export default function CollectionBody(props) {
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
+    setShowLoading(true);
     const cookies = new Cookies();
     itemsAPI.getItems(props.collection._id).then((items_data) => {
       setItems(items_data);
