@@ -1,4 +1,5 @@
 import "./Collection Body.css";
+import LoadingScreen from "../Loading-Screen/Loading-Screen";
 import InstagramItem from "../Items/InstagramItem";
 import YoutubeItem from "../Items/YoutubeItem";
 import XItem from "../Items/XItem";
@@ -13,6 +14,7 @@ export default function CollectionBody(props) {
   const [items, setItems] = useState([]);
   const [hasAccess, setHasAccess] = useState(true);
   const [validURL, setValidURL] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -25,6 +27,7 @@ export default function CollectionBody(props) {
         setHasAccess(false);
       }
       render();
+      setShowLoading(false);
     });
   }, [props.collection]);
 
@@ -68,7 +71,9 @@ export default function CollectionBody(props) {
     });
   }
 
-  return (
+  return showLoading ? (
+    <LoadingScreen />
+  ) : (
     <div className="collection-body-container flex-container-column flex-item">
       <h2 className="collection-body-title flex-item">
         {props.collection.name}
