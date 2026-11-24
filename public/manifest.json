@@ -1,6 +1,7 @@
 {
   "short_name": "Content Vault",
   "name": "Content Vault",
+  "description": "Save YouTube, Instagram, X and web links into collections.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#393737",
+  "background_color": "#393737"
 }

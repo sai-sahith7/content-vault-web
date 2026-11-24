@@ -33,7 +33,7 @@ export default function LandingPage() {
   }
 
   useEffect(() => {
-    document.title = "Content Vault";
+    document.title = "Content Vault | Save YouTube, Instagram, X and Web Links";
   }, []);
 
   if (cookies.get("token")) {
