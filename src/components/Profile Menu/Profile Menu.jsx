@@ -1,21 +1,28 @@
 import "./Profile Menu.css";
+import { useNavigate } from "react-router-dom";
 const clearCookies = require("../../utils/clearCookies");
+const keyboard = require("../../utils/keyboard");
 
 export default function ProfileMenu() {
+  const navigate = useNavigate();
+
   function logOut() {
     clearCookies.clearData().then(() => {
-      window.open("/", "_self");
+      navigate("/", { replace: true });
     });
   }
 
   function dashboard() {
-    window.open("/dashboard", "_self");
+    navigate("/dashboard");
   }
 
   return (
     <div className="profile-menu-container flex-container-column">
       <div
         onClick={dashboard}
+        onKeyDown={keyboard.click(dashboard)}
+        role="button"
+        tabIndex={0}
         className="profile-menu-item flex-container-row flex-item"
       >
         <img
@@ -27,6 +34,9 @@ export default function ProfileMenu() {
       </div>
       <div
         onClick={logOut}
+        onKeyDown={keyboard.click(logOut)}
+        role="button"
+        tabIndex={0}
         className="profile-menu-item flex-container-row flex-item"
       >
         <img

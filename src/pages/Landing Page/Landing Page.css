@@ -1,5 +1,6 @@
 .landingPage {
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   background: #393737;
   background-image: url("../../assets/images/Background.png");
@@ -37,6 +38,21 @@
   cursor: pointer;
 }
 
+.signInButton-redirecting {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.landingPage-message {
+  color: #d9d9d9;
+  font-family: "Kanit-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 @media screen and (max-width: 1024px) {
   .landingPage {
     background-image: url("../../assets/images/mobile-background.png");
@@ -54,6 +70,10 @@
 
   .signInButton {
     width: 200px;
+  }
+
+  .landingPage-message {
+    font-size: 16px;
   }
 }
 
@@ -74,5 +94,9 @@
 
   .signInButton {
     width: 150px;
+  }
+
+  .landingPage-message {
+    font-size: 13px;
   }
 }

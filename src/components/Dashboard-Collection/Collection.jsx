@@ -2,44 +2,47 @@ import "./Collection.css";
 import CollectionMenu from "../Dashboard-Collection-Menu/Collection-menu";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import useMenu from "../../utils/useMenu";
 const collectionAPI = require("../../api/Collection");
+const keyboard = require("../../utils/keyboard");
 
 export default function Collection(props) {
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, toggleMenu, menuButton } = useMenu();
   const [editName, setEditName] = useState(false);
   const [collectionName, setCollectionName] = useState(props.collection.name);
 
-  function toggleMenu(event) {
-    setShowMenu(!showMenu);
-    document.addEventListener("click", (e) => {
-      if (e.target !== event.target) {
-        setShowMenu(false);
-      } else {
-        setShowMenu(true);
-      }
-    });
-  }
-
   function toggleEditName(event) {
     setEditName(!editName);
+    setCollectionName(props.collection.name);
   }
 
   function handleEditNameOnChange(event) {
     setCollectionName(event.target.value);
   }
 
+  function handleEditNameKeyDown(event) {
+    if (event.key === "Enter") {
+      renameCollection();
+    } else if (event.key === "Escape") {
+      toggleEditName();
+    }
+  }
+
   function renameCollection(event) {
-    const collectionName = document.getElementById(
-      "edit-collection-name"
-    ).value;
+    if (!collectionName.trim()) {
+      return;
+    }
     collectionAPI
-      .editCollection(props.collection._id, collectionName)
+      .editCollection(props.collection._id, collectionName.trim())
       .then((collection) => {
+        if (props.handleError(collection)) {
+          return;
+        }
         props.setCollections(function (prev) {
-          const newCollections = prev.map((collection) => {
-            if (collection._id === props.collection._id)
-              collection.name = collectionName;
-            return collection;
+          const newCollections = prev.map((prevCollection) => {
+            if (prevCollection._id === props.collection._id)
+              return { ...prevCollection, name: collection.name };
+            return prevCollection;
           });
           return newCollections;
         });
@@ -51,12 +54,14 @@ export default function Collection(props) {
     <div className="dashboard-collection flex-container-column flex-item">
       <div className="edit-collection-name-container flex-container-column">
         <input
-          id="edit-collection-name"
           type="text"
           className="edit-collection-input flex-item"
           placeholder="Collection Name"
+          aria-label="Collection Name"
           onChange={handleEditNameOnChange}
+          onKeyDown={handleEditNameKeyDown}
           value={collectionName}
+          autoFocus
         />
         <div className="edit-collection-button-container flex-container-row flex-item">
           <button
@@ -79,13 +84,18 @@ export default function Collection(props) {
       {showMenu && (
         <CollectionMenu
           setCollections={props.setCollections}
+          handleError={props.handleError}
           toggleEditName={toggleEditName}
           collection={props.collection}
         />
       )}
       <img
+        ref={menuButton}
         src="/images/menu-button.png"
         onClick={toggleMenu}
+        onKeyDown={keyboard.click(toggleMenu)}
+        role="button"
+        tabIndex={0}
         alt="Menu"
         className="dashboard-collection-menu flex-item"
       />
@@ -101,13 +111,13 @@ export default function Collection(props) {
         {props.collection.isPublic ? (
           <img
             src="/images/globe.png"
-            alt="Visibility"
+            alt="Public"
             className="dashboard-collection-visibility flex-item"
           />
         ) : (
           <img
             src="/images/private.png"
-            alt="Visibility"
+            alt="Private"
             className="dashboard-collection-visibility flex-item"
           />
         )}

@@ -8,7 +8,7 @@
 
 .private-collection-title {
   color: #fff;
-  font: "Kanit-Regular";
+  font-family: "Kanit-Regular";
   font-weight: 100;
   margin: 0px;
   padding: 0px;
@@ -17,8 +17,30 @@
 
 .private-collection-description {
   color: #fff;
-  font: "Kanit-Regular";
+  font-family: "Kanit-Regular";
   font-weight: 50;
   margin: 0px;
-  padding: 0px;
+  padding: 0px 20px 0px 20px;
+  text-align: center;
+}
+
+.private-collection-signin {
+  aspect-ratio: 420/100;
+  width: 250px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .private-collection-image {
+    width: 200px;
+  }
+
+  .private-collection-title {
+    font-size: 25px;
+  }
+
+  .private-collection-signin {
+    width: 180px;
+  }
 }

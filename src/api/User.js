@@ -1,22 +1,10 @@
-import instance from "./init";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+import instance, { handleError } from "./init";
 
 export const getMe = async () => {
-  await instance
-    .get("/user/me", {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token")}`,
-      },
-    })
+  return await instance
+    .get("/user/me")
     .then((response) => {
-      cookies.set("user", response.data);
+      return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };

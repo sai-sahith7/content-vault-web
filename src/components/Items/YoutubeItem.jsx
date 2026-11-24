@@ -1,23 +1,13 @@
-import { useState } from "react";
 import ItemMenu from "../Item Menu/ItemMenu";
+import useMenu from "../../utils/useMenu";
 import "./Item.css";
+const keyboard = require("../../utils/keyboard");
 
 export default function YoutubeItem(props) {
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, toggleMenu, menuButton } = useMenu();
 
   function deleteItem(event) {
     props.deleteItem(props.item._id);
-  }
-
-  function toggleMenu(event) {
-    setShowMenu(!showMenu);
-    document.addEventListener("click", (e) => {
-      if (e.target !== event.target) {
-        setShowMenu(false);
-      } else {
-        setShowMenu(true);
-      }
-    });
   }
 
   function getVideoId(url) {
@@ -26,7 +16,10 @@ export default function YoutubeItem(props) {
       const videoId = urlParams.get("v");
       return videoId;
     } else if (url.includes("youtu.be/")) {
-      const videoId = url.match(`youtu\.be\/([^?]+)`)[1];
+      const videoId = url.match(/youtu\.be\/([^?#]+)/)[1];
+      return videoId;
+    } else if (url.includes("youtube.com/shorts/")) {
+      const videoId = url.match(/youtube\.com\/shorts\/([^/?#]+)/)[1];
       return videoId;
     } else {
       return null;
@@ -44,8 +37,12 @@ export default function YoutubeItem(props) {
         />
         {props.hasAccess ? (
           <img
+            ref={menuButton}
             className="item-delete-icon pointer flex-item"
+            role="button"
+            tabIndex={0}
             onClick={toggleMenu}
+            onKeyDown={keyboard.click(toggleMenu)}
             src="/images/delete.png"
             alt="Delete"
           />
@@ -55,9 +52,9 @@ export default function YoutubeItem(props) {
         src={`https://www.youtube.com/embed/${getVideoId(props.item.url)}`}
         className="youtube-item-video flex-item"
         title="Youtube Video"
-        frameborder="0"
+        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
       <a
         href={props.item.url}
@@ -65,7 +62,7 @@ export default function YoutubeItem(props) {
         rel="noreferrer"
         className="item-title flex-item"
       >
-        {props.item.title}
+        {props.item.title ? props.item.title : props.item.url}
       </a>
     </div>
   );

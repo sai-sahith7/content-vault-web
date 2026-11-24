@@ -36,6 +36,12 @@
   cursor: pointer;
 }
 
+.navbar-signin-image {
+  aspect-ratio: 420/100;
+  width: 200px;
+  cursor: pointer;
+}
+
 .navbar-logo-text::selection,
 .navbar-profile-username::selection {
   background: #fff;
@@ -59,5 +65,9 @@
   .navbar-profile-image {
     width: 40px;
     height: 40px;
+  }
+
+  .navbar-signin-image {
+    width: 130px;
   }
 }

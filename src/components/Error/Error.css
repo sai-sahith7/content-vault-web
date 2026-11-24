@@ -53,3 +53,19 @@
   font-weight: 400;
   border: none;
 }
+
+@media screen and (max-width: 500px) {
+  .error-container {
+    max-width: 260px;
+    padding: 25px;
+    border-radius: 40px;
+  }
+
+  .error-title {
+    font-size: 25px;
+  }
+
+  .error-message {
+    font-size: 17px;
+  }
+}

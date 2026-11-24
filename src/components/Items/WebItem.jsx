@@ -1,23 +1,13 @@
 import "./Item.css";
 import ItemMenu from "../Item Menu/ItemMenu";
-import { useState } from "react";
+import useMenu from "../../utils/useMenu";
+const keyboard = require("../../utils/keyboard");
 
 export default function WebItem(props) {
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, toggleMenu, menuButton } = useMenu();
 
   function deleteItem(event) {
     props.deleteItem(props.item._id);
-  }
-
-  function toggleMenu(event) {
-    setShowMenu(!showMenu);
-    document.addEventListener("click", (e) => {
-      if (e.target !== event.target) {
-        setShowMenu(false);
-      } else {
-        setShowMenu(true);
-      }
-    });
   }
 
   return (
@@ -31,10 +21,14 @@ export default function WebItem(props) {
         />
         {props.hasAccess ? (
           <img
+            ref={menuButton}
             className="item-delete-icon pointer flex-item"
             src="/images/delete.png"
             alt="Delete"
+            role="button"
+            tabIndex={0}
             onClick={toggleMenu}
+            onKeyDown={keyboard.click(toggleMenu)}
           />
         ) : null}
       </div>

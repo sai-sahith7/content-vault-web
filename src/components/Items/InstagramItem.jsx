@@ -1,28 +1,18 @@
 import "./Item.css";
 import ItemMenu from "../Item Menu/ItemMenu";
-import { useState } from "react";
+import useMenu from "../../utils/useMenu";
+const keyboard = require("../../utils/keyboard");
 
 export default function InstagramItem(props) {
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, toggleMenu, menuButton } = useMenu();
 
   function deleteItem(event) {
     props.deleteItem(props.item._id);
   }
 
-  function toggleMenu(event) {
-    setShowMenu(!showMenu);
-    document.addEventListener("click", (e) => {
-      if (e.target !== event.target) {
-        setShowMenu(false);
-      } else {
-        setShowMenu(true);
-      }
-    });
-  }
-
   function getReelId(url) {
-    if (url.match(/instagram\.com\/reels\/([^\/?#]+)/))
-      return url.match(/instagram\.com\/reels\/([^\/?#]+)/)[1];
+    if (url.match(/instagram\.com\/reels?\/([^/?#]+)/))
+      return url.match(/instagram\.com\/reels?\/([^/?#]+)/)[1];
     else return null;
   }
 
@@ -37,10 +27,14 @@ export default function InstagramItem(props) {
         />
         {props.hasAccess ? (
           <img
+            ref={menuButton}
             className="item-delete-icon pointer flex-item"
             src="/images/delete.png"
             alt="Delete"
+            role="button"
+            tabIndex={0}
             onClick={toggleMenu}
+            onKeyDown={keyboard.click(toggleMenu)}
           />
         ) : null}
       </div>
@@ -51,10 +45,17 @@ export default function InstagramItem(props) {
         scrolling="no"
         className="instagram-item-video flex-item"
         title="Instagram Reel"
-        Style="background: black; max-width: 540px; width: calc(100% - 2px); display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"
-        frameborder="0"
+        style={{
+          background: "black",
+          maxWidth: "540px",
+          width: "calc(100% - 2px)",
+          display: "block",
+          margin: "0px 0px 12px",
+          padding: "0px",
+        }}
+        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
       <a
         href={props.item.url}
@@ -62,7 +63,7 @@ export default function InstagramItem(props) {
         rel="noreferrer"
         className="item-title flex-item"
       >
-        {props.item.title}
+        {props.item.title ? props.item.title : props.item.url}
       </a>
     </div>
   );

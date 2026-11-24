@@ -1,67 +1,31 @@
-import instance from "./init";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+import instance, { handleError } from "./init";
 
 export const getItems = async (collectionId) => {
   return await instance
-    .get(`/items/${collectionId}`, {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token")}`,
-      },
-    })
+    .get(`/items/${collectionId}`)
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("items");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const addItem = async (url, collectionId) => {
   return await instance
-    .post(
-      "/items",
-      {
-        collectionId: collectionId,
-        url: url,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${cookies.get("token")}`,
-        },
-      }
-    )
+    .post("/items", {
+      collectionId: collectionId,
+      url: url,
+    })
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const deleteItem = async (itemId) => {
   return await instance
-    .delete(`/items/${itemId}`, {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token")}`,
-      },
-    })
+    .delete(`/items/${itemId}`)
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };

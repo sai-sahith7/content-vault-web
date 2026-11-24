@@ -129,3 +129,25 @@
     font-size: 13px;
   }
 }
+
+@media screen and (max-width: 420px) {
+  .item-container {
+    width: -webkit-fill-available;
+  }
+
+  .youtube-item-video {
+    width: -webkit-fill-available;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+
+  .web-item-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 10px;
+  }
+
+  .web-item-image {
+    width: 80px;
+  }
+}

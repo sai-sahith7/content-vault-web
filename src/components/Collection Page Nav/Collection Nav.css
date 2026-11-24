@@ -25,7 +25,7 @@
 
 .collection-nav-empty {
   margin-top: 50px;
-  font: "Kanit-Regular";
+  font-family: "Kanit-Regular";
   font-size: 30px;
   color: #ff6565;
   text-align: center;
@@ -41,7 +41,8 @@
   padding-left: 30px;
 }
 
-.collection-item-container:hover {
+.collection-item-container:hover,
+.collection-item-container.active {
   background: #656565;
 }
 

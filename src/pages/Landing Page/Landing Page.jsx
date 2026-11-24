@@ -1,23 +1,46 @@
 import Cookies from "universal-cookie";
 import "./Landing Page.css";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useSearchParams } from "react-router-dom";
+const signIn = require("../../utils/signIn");
+const keyboard = require("../../utils/keyboard");
 
 export default function LandingPage() {
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [redirecting, setRedirecting] = useState(false);
+  const cookies = new Cookies();
+  const returnTo = signIn.safePath(searchParams.get("returnTo"));
 
   const signInWithGoogle = async () => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/auth/google`;
-    window.open(url, "_self");
+    if (redirecting) {
+      return;
+    }
+    setRedirecting(true);
+    signIn.signInWithGoogle(returnTo);
   };
+
+  function getMessage() {
+    if (redirecting) {
+      return "Redirecting to Google...";
+    } else if (searchParams.get("auth") === "failed") {
+      return "Sign in failed. Please try again.";
+    } else if (searchParams.get("reason") === "expired") {
+      return "Your session expired. Please sign in again.";
+    } else if (returnTo) {
+      return "Sign in to continue.";
+    }
+    return null;
+  }
 
   useEffect(() => {
     document.title = "Content Vault";
-    const cookies = new Cookies();
-    if (cookies.get("token")) {
-      navigate("/dashboard");
-    }
-  }, [navigate]);
+  }, []);
+
+  if (cookies.get("token")) {
+    return <Navigate to={returnTo || "/dashboard"} replace />;
+  }
+
+  const message = getMessage();
 
   return (
     <div className="landingPage flex-container-column">
@@ -26,11 +49,20 @@ export default function LandingPage() {
         Your Treasure Trove of Online Awesomeness
       </p>
       <img
-        className="signInButton flex-item"
+        className={`signInButton flex-item${
+          redirecting ? " signInButton-redirecting" : ""
+        }`}
         src="/images/Sign-in-with-Google.png"
         alt="Sign in with Google"
+        role="button"
+        tabIndex={0}
+        aria-disabled={redirecting}
         onClick={signInWithGoogle}
+        onKeyDown={keyboard.click(signInWithGoogle)}
       />
+      {message ? (
+        <p className="landingPage-message flex-item">{message}</p>
+      ) : null}
     </div>
   );
 }

@@ -1,24 +1,19 @@
 import "./Item.css";
 import ItemMenu from "../Item Menu/ItemMenu";
-import { useState } from "react";
+import { useEffect } from "react";
 import render from "../Collection Page Body/X-render";
+import useMenu from "../../utils/useMenu";
+const keyboard = require("../../utils/keyboard");
 
 export default function XItem(props) {
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, toggleMenu, menuButton } = useMenu();
+
+  useEffect(() => {
+    render();
+  }, []);
 
   function deleteItem(event) {
     props.deleteItem(props.item._id);
-  }
-
-  function toggleMenu(event) {
-    setShowMenu(!showMenu);
-    document.addEventListener("click", (e) => {
-      if (e.target !== event.target) {
-        setShowMenu(false);
-      } else {
-        setShowMenu(true);
-      }
-    });
   }
 
   return (
@@ -28,15 +23,26 @@ export default function XItem(props) {
         <img className="item-logo-icon flex-item" src="/images/X.png" alt="X" />
         {props.hasAccess ? (
           <img
+            ref={menuButton}
             className="item-delete-icon pointer flex-item"
             src="/images/delete.png"
             alt="Delete"
+            role="button"
+            tabIndex={0}
             onClick={toggleMenu}
+            onKeyDown={keyboard.click(toggleMenu)}
           />
         ) : null}
       </div>
       <blockquote className="twitter-tweet">
-        <a href={props.item.url}>Fetching the tweet...</a>
+        <a
+          href={props.item.url.replace(
+            /\/\/(www\.)?x\.com\//,
+            "//twitter.com/"
+          )}
+        >
+          Fetching the tweet...
+        </a>
       </blockquote>
       <a
         href={props.item.url}
@@ -44,9 +50,8 @@ export default function XItem(props) {
         rel="noreferrer"
         className="item-title flex-item"
       >
-        {props.item.title}
+        {props.item.title ? props.item.title : props.item.url}
       </a>
-      {render()}
     </div>
   );
 }

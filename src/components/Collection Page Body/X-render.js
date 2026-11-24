@@ -1,4 +1,8 @@
 export default function render() {
+  if (window.twttr && window.twttr.widgets) {
+    window.twttr.widgets.load();
+    return;
+  }
   window.twttr = (function (d, s, id) {
     var js,
       fjs = d.getElementsByTagName(s)[0],

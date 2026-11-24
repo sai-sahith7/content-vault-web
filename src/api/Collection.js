@@ -1,129 +1,55 @@
-import instance from "./init";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+import instance, { handleError } from "./init";
 
 export const getCollections = async () => {
   return await instance
-    .get("/collections", {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token")}`,
-      },
-    })
+    .get("/collections")
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const getCollectionById = async (collectionId) => {
   return await instance
-    .get(`/collections/${collectionId}`, {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token")}`,
-      },
-    })
+    .get(`/collections/${collectionId}`)
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const addCollection = async (collectionName) => {
   return await instance
-    .post(
-      "/collections",
-      { name: collectionName },
-      {
-        headers: {
-          Authorization: `Bearer ${cookies.get("token")}`,
-        },
-      }
-    )
+    .post("/collections", { name: collectionName })
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const editCollection = async (collectionId, collectionName) => {
   return await instance
-    .put(
-      `/collections/${collectionId}`,
-      { name: collectionName },
-      {
-        headers: {
-          Authorization: `Bearer ${cookies.get("token")}`,
-        },
-      }
-    )
+    .put(`/collections/${collectionId}`, { name: collectionName })
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const changeVisibility = async (collectionId) => {
   return await instance
-    .post(
-      `/collections/changeVisibility`,
-      { id: collectionId },
-      {
-        headers: {
-          Authorization: `Bearer ${cookies.get("token")}`,
-        },
-      }
-    )
+    .post(`/collections/changeVisibility`, { id: collectionId })
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };
 
 export const deleteCollection = async (collectionId) => {
   return await instance
-    .delete(`/collections/${collectionId}`, {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token")}`,
-      },
-    })
+    .delete(`/collections/${collectionId}`)
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      if (error.response && error.response.status === 401) {
-        cookies.remove("token");
-        cookies.remove("user");
-        return { unauthorized: true };
-      }
-    });
+    .catch(handleError);
 };

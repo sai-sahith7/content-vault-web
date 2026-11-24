@@ -6,7 +6,7 @@ import AddCollection from "../../components/Dashboard-Add-Collection/Add-Collect
 import LoadingScreen from "../../components/Loading-Screen/Loading-Screen";
 import Error from "../../components/Error/Error";
 import Cookies from "universal-cookie";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const collectionAPI = require("../../api/Collection");
 const clearCookies = require("../../utils/clearCookies");
@@ -14,6 +14,7 @@ const clearCookies = require("../../utils/clearCookies");
 export default function Dashboard() {
   const [user, setUser] = useState({});
   const [collections, setCollections] = useState(Array);
+  const [search, setSearch] = useState("");
   const [showLoading, setShowLoading] = useState(true);
   const [showError, setShowError] = useState(false);
 
@@ -23,26 +24,44 @@ export default function Dashboard() {
     setShowError(false);
   }
 
+  const handleError = useCallback(
+    (response) => {
+      if (response.unauthorized) {
+        navigate("/?reason=expired", { replace: true });
+        return true;
+      } else if (response.error || response.notFound) {
+        setShowError(true);
+        return true;
+      }
+      return false;
+    },
+    [navigate]
+  );
+
   useEffect(() => {
     document.title = "Dashboard | Content Vault";
     const cookies = new Cookies();
     const user = cookies.get("user");
+    if (!user || !cookies.get("token")) {
+      clearCookies.clearData().then(() => {
+        navigate("/", { replace: true });
+      });
+      return;
+    }
     collectionAPI.getCollections().then((collections) => {
-      if (collections.unauthorized || !user) {
-        clearCookies.clearData().then(() => {
-          window.open("/", "_self");
-          return;
-        });
-      } else if (collections.error) {
-        setShowError(true);
-        return;
-      } else {
-        setCollections(collections);
+      if (handleError(collections)) {
         setShowLoading(false);
+        return;
       }
+      setCollections(collections);
+      setShowLoading(false);
     });
     setUser(user);
-  }, [navigate]);
+  }, [navigate, handleError]);
+
+  const filteredCollections = collections.filter((collection) =>
+    collection.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   return showLoading ? (
     <LoadingScreen />
@@ -50,13 +69,14 @@ export default function Dashboard() {
     <div className="dashboard-container flex-container-column">
       {showError ? <Error closeError={closeError} /> : null}
       <Navbar user={user} />
-      <Searchbar />
+      <Searchbar search={search} setSearch={setSearch} />
       <div className="dashboard-collection-container flex-container-row">
-        {collections.length > 0
-          ? collections.map((collection) => (
+        {filteredCollections.length > 0
+          ? filteredCollections.map((collection) => (
               <Collection
                 setCollections={setCollections}
                 collectionAPI={collectionAPI}
+                handleError={handleError}
                 key={collection._id}
                 collection={collection}
               />
@@ -65,6 +85,7 @@ export default function Dashboard() {
         <AddCollection
           setCollections={setCollections}
           collectionAPI={collectionAPI}
+          handleError={handleError}
         />
       </div>
     </div>

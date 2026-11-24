@@ -29,6 +29,10 @@
   width: 30px;
 }
 
+.dashboard-collection-menu-image-dark {
+  filter: invert(1);
+}
+
 .delete-menu-item:hover {
   background: #f6a4a4;
 }
@@ -45,5 +49,11 @@
 
   .dashboard-collection-menu-image {
     width: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .dashboard-collection-menu-container {
+    right: -10px;
   }
 }
